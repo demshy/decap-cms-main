@@ -1,0 +1,61 @@
+{{ $ogTitle := .Site.Title }}
+{{ if .Params.ogTags.title }}
+  {{ $ogTitle = .Params.ogTags.title }}
+{{ else if not .IsHome }}
+  {{ $ogTitle = print .Title " | " .Site.Title }}
+{{ end }}
+
+{{ $ogDesc := .Site.Params.description }}
+{{ if .Params.ogTags.description }}
+  {{ $ogDesc = .Params.ogTags.description }}
+{{ else if .Description }}
+  {{ $ogDesc = .Description }}
+{{ end }}
+
+{{ $ogImage := .Site.Params.image }}
+{{ if .Params.ogTags.image }}
+  {{ $ogImage = .Params.ogTags.image }}
+{{ else if .Params.image }}
+  {{ $ogImage = .Params.image }}
+{{ end }}
+
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
+
+  <!-- Don't let bots index non-production URLs -->
+  {{ if ne (getenv "CONTEXT") "production" }}
+    <meta name="robots" content="noindex">
+  {{ end }}
+
+  <!-- Primary Meta Tags -->
+  <title>{{ cond (eq .IsHome true) .Site.Title (print .Title " | " .Site.Title) }}</title>
+  <meta name="description" content="{{ $ogDesc }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:title" content="{{ $ogTitle }}">
+  <meta property="og:description" content="{{ $ogDesc }}">
+  <meta property="og:image" content="{{ .Site.BaseURL }}{{ $ogImage }}">
+
+  {{ partial "base/styles" . }}
+</head>
+
+<body>
+  {{ partialCached "base/unsupported-browser" . }}
+  <a href="#main" class="button skip-to-content">{{ T "skip-to-content" }}</a>
+  {{ partial "header" . }}
+
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer" . }}
+  {{ partial "base/scripts" . }}
+</body>
+</html>

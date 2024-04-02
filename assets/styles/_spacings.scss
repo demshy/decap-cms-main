@@ -1,0 +1,65 @@
+:root {
+  --spacing-xs: clamp(24px, 4vw, 40px);
+  --spacing-sm: clamp(32px, 6vw, 60px);
+  --spacing-md: clamp(40px, 8vw, 80px);
+  --spacing-lg: clamp(60px, 12vw, 120px);
+}
+
+$spacings: (
+  "xs": var(--spacing-xs),
+  "sm": var(--spacing-sm),
+  "md": var(--spacing-md),
+  "lg": var(--spacing-lg),
+);
+
+@each $key, $value in $spacings {
+  .section-margin-#{$key} {
+    margin-top: #{$value};
+    margin-bottom: #{$value};
+  }
+
+  .section-margin-#{$key}-top {
+    margin-top: #{$value};
+  }
+
+  .section-margin-#{$key}-bottom {
+    margin-bottom: #{$value};
+  }
+
+  .section-padding-#{$key} {
+    padding-top: #{$value};
+    padding-bottom: #{$value};
+  }
+
+  .section-padding-#{$key}-top {
+    padding-top: #{$value};
+  }
+
+  .section-padding-#{$key}-bottom {
+    padding-bottom: #{$value};
+  }
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-margin-top {
+  margin-top: 0;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-padding-top {
+  padding-top: 0;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0;
+}

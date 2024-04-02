@@ -1,0 +1,12 @@
+.skip-to-content {
+  position: absolute;
+  left: -100%;
+  z-index: 200;
+  opacity: 0;
+
+  &:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}

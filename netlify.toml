@@ -1,0 +1,12 @@
+[build]
+  publish = "public"
+  command = "npm run lint && chmod +x ./bin/build.sh && ./bin/build.sh"
+
+[build.environment]
+  NODE_VERSION = "18"
+  HUGO_VERSION = "0.119.0"
+  HUGO_ENV = "production"
+  HUGO_ENABLEGITINFO = "true"
+
+[dev]
+  framework = "hugo"

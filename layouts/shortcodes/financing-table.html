@@ -1,0 +1,35 @@
+{{ $data := .Inner | transform.Unmarshal }}
+
+{{- if $data.tableHeaderLeft -}}
+<div class="financing-table no-margin section-padding">
+  <h2>{{ $data.title }}</h2>
+
+  <div class="grid">
+    <p class="col-12 col-md-6 col-xl-4">{{ $data.description }}</p>
+    <div class="col-12 offset-md-1 col-md-10 offset-xl-2 col-xl-8">
+      <div class="financing-table__wrapper">
+        <table>
+          <thead>
+          <th>{{ $data.tableHeaderLeft }}</th>
+          <th>{{ $data.tableHeaderRight }}</th>
+          </thead>
+          <tbody>
+          {{ range $data.tableRows }}
+          <tr>
+            <td>{{ .left }}</td>
+            <td>{{ .right }}</td>
+          </tr>
+          {{ end }}
+          </tbody>
+        </table>
+      </div>
+      <small>{{ $data.disclaimer | markdownify }}</small>
+    </div>
+  </div>
+  {{- with $data.button -}}
+    {{- if .text -}}
+      <a class="button section-margin-top-small" href="{{ .href }}">{{ .text }}</a>
+    {{ end -}}
+  {{- end -}}
+</div>
+{{- end -}}

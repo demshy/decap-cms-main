@@ -1,0 +1,7 @@
+{{ $lazyload := resources.Get "/scripts/lazyload.js" }}
+
+{{ $bundleItems := slice $lazyload }}
+
+{{ $bundleJs := $bundleItems | resources.Concat "scripts/bundle.js" | js.Build (dict "sourcemap" "inline") }}
+
+<script defer src="{{ $bundleJs.RelPermalink }}"></script>

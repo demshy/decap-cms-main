@@ -1,0 +1,49 @@
+{
+  "name": "hugo-template",
+  "version": "1.1.0",
+  "description": "Template project for sites built with Hugo, Decap, and Netlify",
+  "main": "index.js",
+  "scripts": {
+    "dev": "hugo server",
+    "build": "hugo",
+    "lint": "npx htmlhint 'layouts/**/*.html' & npx eslint . & npx stylelint \"assets/styles/*.scss\"",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poslovnimediji/hugo-template.git"
+  },
+  "author": "PM, poslovni mediji",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/poslovnimediji/hugo-template/issues"
+  },
+  "homepage": "https://github.com/poslovnimediji/hugo-template#readme",
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "htmlhint": "^1.1.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "stylelint": "^15.10.1",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "stylelint-selector-bem-pattern": "^2.1.1"
+  },
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "autoprefixer": "^10.4.14",
+    "lozad": "^1.16.0",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint",
+    "*.scss": "stylelint",
+    "*.css": "stylelint",
+    "*.html": "htmlhint"
+  }
+}

@@ -1,0 +1,15 @@
+html,
+body,
+.body-overflow {
+  min-height: 100vh;
+}
+
+.body-overflow {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+}

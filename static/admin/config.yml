@@ -1,0 +1,71 @@
+local_backend: true
+
+backend:
+  name: github
+  repo: poslovnimediji/decap-cms-tester
+  squash_merges: true
+  always_fork: true
+  open_authoring: true
+
+# publish_mode: editorial_workflow
+display_url: https://hugo-template.netlify.app/
+logo_url: /media/brand/logo.svg
+media_folder: static/media/uploads
+public_folder: /media/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+aliases:
+  - &VISIBLE_IN_CMS {name: visibleInCMS, widget: hidden, default: true}
+
+# https://decapcms.org/docs/configuration-options/#publish-mode
+# publish_mode: editorial_workflow
+
+collections:
+  - name: posts
+    label: Posts
+    label_singular: post
+    folder: content/posts
+    create: true
+    slug: "{{slug}}"
+
+    # This is hack to remove index.md from the list. Add visibleInCMS: true to all content files except index pages.
+    filter: {field: visibleInCMS, value: true}
+
+    # Enable this for a prewiew on the right when editing. You will have to create a preview template for it to make sense.
+    editor:
+      preview: false
+
+    # more about widgets: https://www.netlifycms.org/docs/widgets/
+    fields: [
+      {name: title, widget: string},
+      {name: description, widget: text},
+      {name: image, widget: image},
+      {name: body, widget: markdown},
+      *VISIBLE_IN_CMS,
+    ]
+
+  - name: general
+    label: General
+    editor:
+      preview: false
+    files:
+    - label: Site settings
+      name: site-settings
+      file: config.toml
+      fields: [
+        {name: title, widget: string},
+        {label: Google Analytics ID, name: googleAnalytics, widget: string, required: false},
+        {name: params, widget: object, fields: [
+          {name: description, widget: text},
+          {name: image, widget: image},
+        ]},
+      ]
+    - label: Footer
+      name: footer
+      file: data/footer.json
+      fields: [
+        {name: copyright, widget: string}
+      ]

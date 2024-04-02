@@ -1,0 +1,27 @@
+title = "Hugo Template"
+disableFastRender = true
+languageCode = "en-en"
+defaultContentLanguage = "en"
+
+[params]
+description = "Template repository for Jamstack projects"
+image = "/media/brand/og-image.jpg"
+
+[params.breakpoints]
+  xs = 576
+  sm = 768
+  md = 992
+  lg = 1200
+  xl = 1440
+  xxl = 1680
+  xxxl = 1920
+
+[markup]
+
+[markup.goldmark]
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[security.funcs]
+getenv = ["^HUGO_", "CONTEXT"]
